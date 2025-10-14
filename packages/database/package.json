@@ -1,0 +1,7 @@
+{
+    "name": "database",
+    "module": "index.ts",
+    "dependencies": {
+        "mongodb": "^6.20.0"
+    }
+}
