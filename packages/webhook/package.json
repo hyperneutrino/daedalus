@@ -1,0 +1,7 @@
+{
+    "name": "webhook",
+    "module": "index.ts",
+    "dependencies": {
+        "discord.js": "^14.23.2"
+    }
+}

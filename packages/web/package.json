@@ -1,0 +1,6 @@
+{
+    "name": "web",
+    "dependencies": {
+        "fastify": "^5.6.1"
+    }
+}

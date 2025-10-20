@@ -1,0 +1,9 @@
+{
+    "name": "bot",
+    "dependencies": {
+        "database": "workspace:*",
+        "queues": "workspace:*",
+        "webhook": "workspace:*",
+        "discord.js": "^14.23.2"
+    }
+}

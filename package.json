@@ -1,14 +1,19 @@
 {
     "name": "daedalus",
-    "type": "module",
-    "workspaces": [
-        "packages/*"
-    ],
+    "scripts": {
+        "discord:main": "cd packages/bot && bun --env-file=../../.env main.ts",
+        "discord:customs": "cd packages/bot && bun --env-file=../../.env customs.ts"
+    },
     "devDependencies": {
         "@types/bun": "latest",
+        "@types/node": "^24.8.1",
         "prettier": "^3.6.2"
     },
     "peerDependencies": {
         "typescript": "^5"
-    }
+    },
+    "type": "module",
+    "workspaces": [
+        "packages/*"
+    ]
 }
