@@ -1,0 +1,7 @@
+---
+import { Icon as AstroIcon } from "astro-icon/components";
+
+const { name, brand, ...props } = Astro.props;
+---
+
+<AstroIcon name=`${brand ? "fa6-brands" : "fa6-solid"}:${name}` width={props.width ?? "1rem"} height={props.height ?? "1rem"} {...props} />

@@ -1,6 +1,18 @@
 {
     "name": "web",
+    "type": "module",
+    "version": "0.0.1",
+    "scripts": {
+        "dev": "bun x astro dev",
+        "build": "bun x astro build",
+        "preview": "bun x astro preview"
+    },
     "dependencies": {
-        "lit": "^3.3.1"
+        "utils": "workspace:*",
+        "@astrojs/node": "^9.5.0",
+        "@iconify-json/fa6-brands": "^1.2.6",
+        "@iconify-json/fa6-solid": "^1.2.4",
+        "astro": "^5.15.1",
+        "astro-icon": "^1.1.5"
     }
 }

@@ -1,0 +1,283 @@
+---
+import { Image } from "astro:assets";
+import Icon from "./Icon.astro";
+import ThemeToggle from "./ThemeToggle.astro";
+
+const { user } = Astro.locals;
+
+type Link = { title: string; href: string; icon: string; brand?: boolean; match?: boolean };
+
+const links: Link[] = [
+    { title: "docs", href: "/docs", icon: "book" },
+    { title: "install", href: "/install", icon: "plus" },
+    { title: "support", href: "https://discord.gg/7TRKfSK7EU", icon: "discord", brand: true },
+    { title: "premium", href: "/premium", icon: "crown" },
+    { title: "partners", href: "/partners", icon: "handshake" },
+];
+
+const additionalLinks: Link[] | undefined = Astro.props.additionalLinks;
+---
+
+<nav id="navbar">
+    <span>
+        <a href="/" id="main-button" class="nav-button">
+            <Image id="icon" src="/favicon.ico" loading="eager" alt="" width={48} height={48} />
+            <b class="sm-up">daedalus</b>
+        </a>
+        {
+            links.map(({ title, href, icon, brand }) => (
+                <>
+                    <span class="xl separator">
+                        <span />
+                    </span>
+                    <a href={href} class="xl nav-button" target={href[0] === "/" ? "_self" : "_blank"}>
+                        <Icon name={icon} brand={brand} />
+                        <span>{title}</span>
+                    </a>
+                </>
+            ))
+        }
+    </span>
+    <span>
+        {
+            user ? (
+                <div style={{ position: "relative" }}>
+                    <button class="nav-button" onclick="showDropdown()">
+                        <Image id="avatar" src={user.image} loading="eager" alt="your avatar" width={40} height={40} />
+                        <span class="sm-up">Hello, {user.name}!</span>
+                    </button>
+                    <div id="dropdown-container">
+                        <div id="dropdown" class="hide">
+                            <a href="/account" class="dropdown-button">
+                                My Account
+                            </a>
+                            <a href={`/auth/logout?redirect=${encodeURIComponent(Astro.url.pathname)}`} class="dropdown-button">
+                                Log Out
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            ) : (
+                <a href={`/auth/login?redirect=${encodeURIComponent(Astro.url.pathname)}`} class="nav-button">
+                    log in
+                </a>
+            )
+        }
+        <ThemeToggle />
+        <button id="menu-button" class="lg-dn nav-button" onclick="showDrawer()"><Icon name="bars" /></button>
+    </span>
+</nav>
+
+<div id="screen-cover" class="hide lg-dn" onclick="hideDrawer()"></div>
+
+<div id="drawer" class="hide lg-dn">
+    {
+        links.map(({ title, href, icon, brand }) => (
+            <a href={href} class="nav-button" target={href[0] === "/" ? "_self" : "_blank"}>
+                <Icon name={icon} brand={brand} /> <span>{title}</span>
+            </a>
+        ))
+    }
+    {
+        additionalLinks?.length ? (
+            <span class="md-dn h-separator">
+                <span />
+            </span>
+        ) : null
+    }
+    {
+        additionalLinks?.map(({ title, href, icon, brand, match }) => (
+            <a href={href} class={`md-dn nav-button ${match ? "selected" : ""}`} target={href[0] === "/" ? "_self" : "_blank"}>
+                <Icon name={icon} brand={brand} /> <span>{title}</span>
+            </a>
+        ))
+    }
+    <button class="nav-button" onclick="hideDrawer()" style={{ color: "var(--text-red)" }}><Icon name="xmark" /> Close</button>
+</div>
+
+<style>
+    #navbar {
+        width: 100%;
+        height: calc(48px + 1rem);
+
+        display: flex;
+        align-items: stretch;
+        justify-content: space-between;
+
+        background-color: var(--navbar-background);
+        border-bottom: 1px solid var(--navbar-border);
+        backdrop-filter: blur(2px);
+    }
+
+    #navbar > span {
+        display: flex;
+        align-items: stretch;
+    }
+
+    #main-button {
+        font-size: 24pt;
+    }
+
+    .nav-button,
+    .dropdown-button {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+
+        background-color: transparent;
+        color: var(--text-primary);
+        cursor: pointer;
+        border: none;
+        outline: none;
+        text-decoration: none;
+        font-family: Geo, sans-serif;
+        white-space: nowrap;
+
+        transition: background-color 100ms;
+    }
+
+    .nav-button {
+        padding: 0.75rem 1rem;
+        font-size: 16pt;
+    }
+
+    .nav-button.selected {
+        background-color: var(--sidebar-button-selected);
+    }
+
+    .dropdown-button {
+        padding: 0.25rem 1.5rem;
+        font-size: 14pt;
+    }
+
+    .nav-button:hover,
+    .dropdown-button:hover {
+        background-color: var(--nav-button-hover);
+    }
+
+    .nav-button:active,
+    .dropdown-button:active {
+        background-color: var(--nav-button-active);
+    }
+
+    .nav-button > svg {
+        font-size: 12pt;
+    }
+
+    span.separator {
+        display: flex;
+        align-items: center;
+    }
+
+    span.separator > span {
+        width: 0px;
+        height: 60%;
+        border-left: 1px solid var(--navbar-border);
+    }
+
+    span.h-separator {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    span.h-separator > span {
+        width: 90%;
+        height: 0px;
+        border-bottom: 1px solid var(--navbar-border);
+    }
+
+    #menu-button {
+        padding: 0 1.5rem;
+    }
+
+    #screen-cover {
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+
+        background-color: var(--nav-screen-cover);
+        transition: opacity 150ms;
+
+        backdrop-filter: blur(1px);
+    }
+
+    #screen-cover.hide {
+        opacity: 0%;
+        pointer-events: none;
+    }
+
+    #drawer {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        width: 300px;
+        max-width: 80vw;
+        z-index: 100;
+
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+
+        padding: 1rem;
+
+        background-color: var(--nav-drawer-background);
+
+        transition: transform 150ms;
+    }
+
+    #drawer.hide {
+        transform: translateX(100%);
+    }
+
+    #dropdown-container {
+        position: absolute;
+        width: 100%;
+        top: calc(100% + 0.5rem);
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #dropdown {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+
+        border: 1px solid var(--navbar-border);
+        padding: 0.25rem;
+        background-color: var(--navbar-background);
+        backdrop-filter: blur(2px);
+    }
+
+    #dropdown.hide {
+        display: none;
+    }
+</style>
+
+<script is:inline>
+    function showDrawer() {
+        document.getElementById("screen-cover").classList.remove("hide");
+        document.getElementById("drawer").classList.remove("hide");
+    }
+
+    function hideDrawer() {
+        document.getElementById("screen-cover").classList.add("hide");
+        document.getElementById("drawer").classList.add("hide");
+    }
+
+    function showDropdown() {
+        document.getElementById("dropdown").classList.remove("hide");
+    }
+
+    function hideDropdown() {
+        document.getElementById("dropdown").classList.add("hide");
+    }
+
+    document.addEventListener("mouseup", function (e) {
+        if (e.target.id === "dropdown" || e.target.parentNode.id === "dropdown") return;
+        hideDropdown();
+    });
+</script>

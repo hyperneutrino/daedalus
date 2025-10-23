@@ -1,0 +1,402 @@
+html,
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+
+    font-family: "Exo 2", sans-serif;
+    line-height: 1.75em;
+}
+
+.dark-theme .light,
+.light-theme .dark {
+    display: none;
+}
+
+html.dark-theme {
+    background-color: #080808;
+    color: #eee;
+
+    --navbar-background: #080808bb;
+    --navbar-border: #444;
+    --nav-button-hover: #fff1;
+    --nav-button-active: #ffffff0b;
+    --nav-drawer-background: #111;
+    --nav-screen-cover: #080808bb;
+    --avatar-preload-background: #eee;
+    --sidebar-background: #080808;
+    --sidebar-border: #444;
+    --sidebar-button-hover: #fff1;
+    --sidebar-button-active: #ffffff0b;
+    --sidebar-button-selected: #fff2;
+    --shell-main-background: #0c0c0c;
+    --panel-border: #444;
+    --panel-background-1: #ffffff09;
+    --panel-background: #ffffff04;
+    --text-primary: #eee;
+    --text-secondary: #bbb;
+    --text-tertiary: #999;
+    --text-inverse: #080808;
+    --text-red: #e66;
+    --text-inverse-green: #090;
+    --button-primary-background: #ddd;
+    --button-primary-hover: #eee;
+    --button-primary-active: #ccc;
+    --button-primary: #111;
+    --button-secondary-background: #111;
+    --button-secondary-hover: #181818;
+    --button-secondary-active: #080808;
+    --button-secondary: #eee;
+    --button-secondary-border: #444;
+    --switch-off-background: #222;
+    --switch-on-background: #eee;
+    --switch-handle: #111;
+    --switch-border: #444;
+    --save-bar-background: #222;
+    --input-background: #111;
+    --input-hover: #222;
+    --input-border: #444;
+    --input-outline: #888;
+    --guild-icon-background: #fff1;
+    --badge-primary-background: #222;
+    --badge-primary: #eee;
+    --badge-danger-background: #711;
+    --badge-danger: #eee;
+    --combobox-background: #000;
+    --combobox-border: #444;
+    --code-background: #151515;
+    --modal-background: #090909;
+}
+
+html.light-theme {
+    background-color: #f8f8f8;
+    color: #111;
+
+    --navbar-background: #f8f8f8bb;
+    --navbar-border: #bbb;
+    --nav-button-hover: #0001;
+    --nav-button-active: #00000019;
+    --nav-drawer-background: #eaeaea;
+    --nav-screen-cover: #1119;
+    --avatar-preload-background: #111;
+    --sidebar-background: #e6e6e6;
+    --sidebar-border: #bbb;
+    --sidebar-button-hover: #0001;
+    --sidebar-button-active: #00000019;
+    --sidebar-button-selected: #00000025;
+    --shell-main-background: #eee;
+    --panel-border: #bbb;
+    --panel-background-1: #00000008;
+    --panel-background: #00000004;
+    --text-primary: #111;
+    --text-secondary: #444;
+    --text-tertiary: #666;
+    --text-inverse: #eee;
+    --text-red: #f00;
+    --text-inverse-green: #6e6;
+    --button-primary-background: #111;
+    --button-primary-hover: #181818;
+    --button-primary-active: #080808;
+    --button-primary: #eee;
+    --button-secondary-background: #ddd;
+    --button-secondary-hover: #eee;
+    --button-secondary-active: #ccc;
+    --button-secondary: #111;
+    --button-secondary-border: #bbb;
+    --switch-off-background: #ccc;
+    --switch-on-background: #111;
+    --switch-handle: #eee;
+    --switch-border: #bbb;
+    --save-bar-background: #ccc;
+    --input-background: #eee;
+    --input-hover: #ddd;
+    --input-border: #ccc;
+    --input-outline: #888;
+    --guild-icon-background: #0001;
+    --badge-primary-background: #ccc;
+    --badge-primary: #111;
+    --badge-danger-background: #d33;
+    --badge-danger: #eee;
+    --combobox-background: #f5f5f5;
+    --combobox-border: #bbb;
+    --code-background: #d9d9d9;
+    --modal-background: #e4e4e4;
+}
+
+@media (any-pointer: coarse) {
+    :global(.kbm) {
+        display: none !important;
+    }
+}
+
+@media (any-pointer: fine) {
+    :global(.mobile) {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 639px) {
+    :global(.sm, .sm-up, .md, .md-up, .lg, .lg-up, .xl) {
+        display: none !important;
+    }
+}
+
+@media screen and (min-width: 640px) and (max-width: 767px) {
+    :global(.xs, .md, .md-up, .lg, .lg-up, .xl) {
+        display: none !important;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    :global(.xs, .sm, .sm-dn, .lg, .lg-up, .xl) {
+        display: none !important;
+    }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1279px) {
+    :global(.xs, .sm, .sm-dn, .md, .md-dn, .xl) {
+        display: none !important;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    :global(.xs, .sm, .sm-dn, .md, .md-dn, .lg, .lg-dn) {
+        display: none !important;
+    }
+}
+
+:global(.small-text) {
+    font-size: 80%;
+}
+
+:global(.geo) {
+    font-family: Geo, sans-serif;
+}
+
+:global(a) {
+    color: var(--text-primary);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0.25rem 0;
+    font-family: Geo, sans-serif;
+}
+
+:global(h1) {
+    font-size: 24pt;
+    font-weight: unset;
+}
+
+:global(h2) {
+    font-size: 19pt;
+    font-weight: unset;
+}
+
+:global(h3) {
+    font-size: 17pt;
+    font-weight: unset;
+}
+
+:global(h4) {
+    font-size: 15pt;
+    font-weight: bold;
+}
+
+:global(h5) {
+    font-size: 14pt;
+    font-weight: bold;
+}
+
+:global(h6) {
+    font-size: 13pt;
+    font-weight: bold;
+}
+
+:global(p) {
+    margin: 0;
+    max-width: 800px;
+}
+
+:global(.btn) {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.3rem;
+    box-sizing: border-box;
+
+    background-color: var(--background);
+    color: var(--foreground);
+    cursor: default;
+    user-select: none;
+    border: 1px solid var(--border);
+    outline: unset;
+    font-family: "Exo 2", sans-serif;
+    font-size: 11pt;
+    text-decoration: none;
+    padding: 0.25rem 1rem;
+}
+
+:global(.btn:not([disabled]):hover) {
+    background-color: var(--hover);
+}
+
+:global(.btn:not([disabled]):active) {
+    background-color: var(--active);
+}
+
+:global(.btn[disabled]) {
+    opacity: 60%;
+}
+
+:global(.btn:not([disabled]):not(.static):active) {
+    scale: 96%;
+}
+
+:global(.btn.primary) {
+    --background: var(--button-primary-background);
+    --foreground: var(--button-primary);
+    --hover: var(--button-primary-hover);
+    --active: var(--button-primary-active);
+}
+
+:global(.btn.secondary) {
+    --background: var(--button-secondary-background);
+    --foreground: var(--button-secondary);
+    --hover: var(--button-secondary-hover);
+    --active: var(--button-secondary-active);
+    --border: var(--button-secondary-border);
+}
+
+:global(.panel) {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    align-self: stretch;
+    gap: 0.75rem;
+    height: max-content;
+
+    overflow-x: scroll;
+    overflow-y: visible;
+
+    background-color: var(--panel-background-1);
+    border: 1px solid var(--panel-border);
+    padding: 0.5rem 1rem;
+}
+
+:global(.panel .panel) {
+    background-color: var(--panel-background);
+}
+
+:global(.switch-grid) {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 0.25rem;
+}
+
+:global(input[type="text"], input[type="color"], select, textarea) {
+    background-color: var(--input-background);
+    border: 1px solid var(--input-border);
+    outline: unset;
+    color: var(--text-primary);
+    font-family: "Exo 2", sans-serif;
+    font-size: 12pt;
+    padding: 0.5rem;
+}
+
+:global(input[type="text"]:hover, input[type="color"]:hover, select:hover, textarea:hover) {
+    background-color: var(--input-hover);
+}
+
+:global(input[type="text"]:focus, select:focus, textarea:focus) {
+    border: 1px solid var(--input-outline);
+}
+
+:global(input[type="text"]::placeholder, select::placeholder, textarea:placeholder) {
+    color: var(--text-tertiary);
+}
+
+:global(textarea) {
+    align-self: stretch;
+    height: 3rem;
+    resize: vertical;
+}
+
+:global(.badge) {
+    background-color: var(--background);
+    color: var(--foreground);
+    padding: 0 0.5rem;
+    font-size: 10pt;
+}
+
+:global(.badge.primary) {
+    --background: var(--badge-primary-background);
+    --foreground: var(--badge-primary);
+}
+
+:global(.badge.danger) {
+    --background: var(--badge-danger-background);
+    --foreground: var(--badge-danger);
+}
+
+:global(label) {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+:global(.text-secondary) {
+    color: var(--text-secondary);
+}
+
+:global(.text-tertiary) {
+    color: var(--text-tertiary);
+}
+
+:global(code, pre) {
+    font-family: "Share Tech Mono", monospace;
+}
+
+:global(code:not(.plain), pre:not(.plain)) {
+    background-color: var(--code-background);
+    padding: 0 0.5rem;
+}
+
+:global(pre code) {
+    background-color: unset;
+    padding: unset;
+}
+
+:global(.flex) {
+    display: flex;
+    gap: 0.5rem;
+}
+
+:global(.flex.col) {
+    flex-direction: column;
+}
+
+:global(.flex:not(.no-center)) {
+    align-items: center;
+}
+
+:global(.flex.no-center) {
+    align-items: start;
+}
+
+:global(.flex.stretch) {
+    align-items: stretch;
+}
+
+:global(.flex.wide-gap) {
+    gap: 1rem;
+}
+
+:global(.flex:not(.no-wrap)) {
+    flex-wrap: wrap;
+}

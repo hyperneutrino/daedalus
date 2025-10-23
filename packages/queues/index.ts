@@ -4,7 +4,7 @@ import IORedis from "ioredis";
 const connection = new IORedis({ maxRetriesPerRequest: null });
 
 export const queues = {
-    clients: new Queue<{ action: "start" | "stop" | "restart"; token: string }>("clients"),
+    clients: new Queue<{ action: "start" | "stop" | "restart"; token: string }>("clients", { connection }),
 };
 
 export function makeWorker<T extends keyof typeof queues>(

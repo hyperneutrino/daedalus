@@ -1,0 +1,33 @@
+---
+import { env } from "utils";
+
+const fail = (path = "/") => new Response(null, { headers: { Location: path }, status: 302 });
+
+const code = Astro.url.searchParams.get("code");
+if (!code) return fail();
+
+const state = Astro.url.searchParams.get("state");
+if (!state || state.substring(0, 32) !== Astro.cookies.get("state")?.value) return fail("/state-mismatch");
+
+const request = await fetch(`${env("DISCORD_API")}/oauth2/token`, {
+    method: "post",
+    body: new URLSearchParams({
+        client_id: env("DISCORD_CLIENT_ID"),
+        client_secret: env("DISCORD_CLIENT_SECRET"),
+        grant_type: "authorization_code",
+        redirect_uri: `${env("DOMAIN")}/auth/callback`,
+        code,
+        scope: "identify guilds",
+    }),
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+});
+
+if (!request.ok) return fail();
+
+const response = (await request.json()) as { access_token: string; refresh_token: string; expires_in: number };
+
+const headers = new Headers({ Location: state.substring(32) });
+Astro.cookies.set("discord_access_token", response.access_token, { path: "/", httpOnly: true, sameSite: "lax", maxAge: response.expires_in - 10000 });
+Astro.cookies.set("discord_refresh_token", response.refresh_token, { path: "/", httpOnly: true, sameSite: "lax", maxAge: 30 * 24 * 60 * 60 * 1000 });
+return new Response(null, { headers, status: 303 });
+---

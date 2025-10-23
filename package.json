@@ -1,7 +1,8 @@
 {
     "name": "daedalus",
     "scripts": {
-        "web:dev": "cd packages/web && bun ./**/*.html"
+        "web:dev": "cd packages/web && bun --env-file=../../.env run dev",
+        "web:build": "cd packages/web && bun --env-file=../../.env run build"
     },
     "devDependencies": {
         "@types/bun": "latest",

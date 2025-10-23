@@ -1,0 +1,42 @@
+---
+import Footer from "#/components/Footer.astro";
+import Navbar from "#/components/Navbar.astro";
+import BaseLayout from "./BaseLayout.astro";
+
+const width = Astro.props.width ?? 600;
+---
+
+<BaseLayout>
+    <div id="navbar-container">
+        <Navbar />
+    </div>
+    <div id="main-container" style={{ padding: `calc(48px + 6rem) calc(max(10vw, 50vw - ${width / 2}px))` }}>
+        <slot />
+    </div>
+    <div id="footer-container">
+        <Footer />
+    </div>
+</BaseLayout>
+
+<style>
+    #navbar-container,
+    #footer-container {
+        position: fixed;
+        width: 100%;
+    }
+
+    #navbar-container {
+        top: 0;
+    }
+
+    #main-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    #footer-container {
+        bottom: 0;
+    }
+</style>

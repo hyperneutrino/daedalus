@@ -9,4 +9,9 @@ export const apps = [
         cwd: "packages/bot",
         script: "bun --env-file=../../.env customs.ts",
     },
+    {
+        name: "web",
+        cwd: "packages/web",
+        script: "bun --env-file=../../.env run preview",
+    },
 ];

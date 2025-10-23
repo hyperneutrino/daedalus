@@ -1,0 +1,6 @@
+---
+const headers = new Headers({ location: Astro.url.searchParams.get("redirect") ?? "/" });
+Astro.cookies.set("discord_access_token", "", { path: "/" });
+Astro.cookies.set("discord_refresh_token", "", { path: "/" });
+return new Response(null, { headers, status: 302 });
+---
