@@ -1,3 +1,0 @@
-Bun.serve({
-    routes: {},
-});

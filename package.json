@@ -1,8 +1,7 @@
 {
     "name": "daedalus",
     "scripts": {
-        "discord:main": "cd packages/bot && bun --env-file=../../.env main.ts",
-        "discord:customs": "cd packages/bot && bun --env-file=../../.env customs.ts"
+        "web:dev": "cd packages/web && bun ./**/*.html"
     },
     "devDependencies": {
         "@types/bun": "latest",

@@ -1,10 +1,12 @@
 export const apps = [
     {
         name: "discord:main",
-        script: "bun run discord:main",
+        cwd: "packages/bot",
+        script: "bun --env-file=../../.env main.ts",
     },
     {
         name: "discord:customs",
-        script: "bun run discord:customs",
+        cwd: "packages/bot",
+        script: "bun --env-file=../../.env customs.ts",
     },
 ];
