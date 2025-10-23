@@ -1,3 +1,6 @@
 {
-    "name": "web"
+    "name": "web",
+    "dependencies": {
+        "lit": "^3.3.1"
+    }
 }
