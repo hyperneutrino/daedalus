@@ -1,0 +1,36 @@
+---
+import Icon from "#/components/Icon.astro";
+import Layout from "#/layouts/Layout.astro";
+import { Image } from "astro:assets";
+---
+
+<Layout>
+    <h1 id="header">daedalus partners</h1>
+    <div class="flex col no-center">
+        <p>
+            interested in partnering with daedalus for mutual benefits and perks like free access to certain premium features? reach out to us through our
+            support server or <a href="mailto:support@daedalusbot.xyz">support@daedalusbot.xyz</a>!
+        </p>
+        <hr />
+        <h2 class="flex wide-gap">
+            <Image src="/tcn.png" alt="teyvat collective network icon" width={40} height={40} />
+            <a href="/partners/tcn">teyvat collective network</a>
+        </h2>
+        <p class="text-secondary">partnered since 2024-02-28</p>
+        <p>
+            the TCN is a network of high-quality genshin impact servers whose mission is to unite all mains servers across teyvat and provide support to and
+            promote collaboration between partners
+        </p>
+        <p>
+            daedalus started out in the genshin impact subcommunity and owes a large amount of its success to the space that has been supported by the TCN, as
+            well as to direct word of mouth within the TCN and its affiliates
+        </p>
+        <p>
+            this partnership helps both parties grow and provides mutual benefits &mdash; servers in the TCN gain access to the custom client feature, which is
+            particularly well-suited to character servers as servers can run daedalus through a bot that takes on the appearance of their mascot characters
+        </p>
+        <a href="/partners/tcn" class="btn primary">
+            learn more about the TCN <Icon name="chevron-right" />
+        </a>
+    </div>
+</Layout>

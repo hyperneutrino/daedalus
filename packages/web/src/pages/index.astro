@@ -1,23 +1,22 @@
 ---
+import Icon from "#/components/Icon.astro";
 import Layout from "../layouts/Layout.astro";
+
+const { user } = Astro.locals;
 ---
 
 <Layout>
     <h1 id="header">welcome to daedalus</h1>
     <h2 id="subheader">the all-in-one discord bot for all of your needs</h2>
+    {
+        user ? (
+            <a href="/manage" class="btn primary static">
+                <Icon name="gear" /> manage servers
+            </a>
+        ) : (
+            <a href="/auth/login?redirect=/" class="btn primary">
+                <Icon name="discord" brand /> log in
+            </a>
+        )
+    }
 </Layout>
-
-<style>
-    #header {
-        font-weight: normal;
-        font-size: calc(20pt + 1vw);
-        text-align: center;
-    }
-
-    #subheader {
-        font-weight: normal;
-        font-size: calc(12pt + 0.25vw);
-        text-align: center;
-        color: var(--text-secondary);
-    }
-</style>

@@ -7,7 +7,21 @@ export default defineConfig({
     integrations: [
         icon({
             include: {
-                "fa6-solid": ["bars", "book", "crown", "handshake", "moon", "plus", "screwdriver-wrench", "sun", "xmark"],
+                "fa6-solid": [
+                    "bars",
+                    "book",
+                    "chevron-left",
+                    "chevron-right",
+                    "crown",
+                    "earth-americas",
+                    "gear",
+                    "handshake",
+                    "moon",
+                    "plus",
+                    "screwdriver-wrench",
+                    "sun",
+                    "xmark",
+                ],
                 "fa6-brands": ["discord"],
             },
         }),
