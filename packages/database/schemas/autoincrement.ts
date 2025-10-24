@@ -1,4 +1,4 @@
-import { getMongoCollection } from "./db.ts";
+import { getMongoCollection } from "../db.ts";
 
 const collection = getMongoCollection<{ key: string; value: number }>("autoincrement");
 

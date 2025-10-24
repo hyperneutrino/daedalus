@@ -1,0 +1,28 @@
+---
+import Layout from "./Layout.astro";
+
+const layout = !!Astro.props.layout;
+const width = Astro.props.width;
+---
+
+{
+    Astro.locals.user ? (
+        layout ? (
+            <Layout width={width}>
+                <slot />
+            </Layout>
+        ) : (
+            <slot />
+        )
+    ) : (
+        <Layout>
+            <>
+                <meta http-equiv="refresh" content={`0; url=/auth/login?redirect=${encodeURIComponent(Astro.url.pathname)}`} />
+                <p>
+                    you must be logged in to view this page &mdash; if you aren't being redirected, log in{" "}
+                    <a href={`/auth/login?redirect=${encodeURIComponent(Astro.url.pathname)}`}>here</a>
+                </p>
+            </>
+        </Layout>
+    )
+}

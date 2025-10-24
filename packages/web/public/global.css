@@ -90,8 +90,8 @@ html.light-theme {
     --panel-background-1: #00000008;
     --panel-background: #00000004;
     --text-primary: #111;
-    --text-secondary: #444;
-    --text-tertiary: #666;
+    --text-secondary: #666;
+    --text-tertiary: #999;
     --text-inverse: #eee;
     --text-red: #f00;
     --text-inverse-green: #6e6;
@@ -321,13 +321,6 @@ p {
     background-color: var(--panel-background);
 }
 
-.switch-grid {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    gap: 0.25rem;
-}
-
 input[type="text"],
 input[type="color"],
 select,
@@ -458,4 +451,8 @@ hr {
     font-size: calc(12pt + 0.75vw);
     text-align: center;
     color: var(--text-secondary);
+}
+
+.stretch {
+    align-self: stretch;
 }

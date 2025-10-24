@@ -15,5 +15,10 @@
     "type": "module",
     "workspaces": [
         "packages/*"
-    ]
+    ],
+    "dependencies": {
+        "@trpc/client": "^11.6.0",
+        "@trpc/server": "^11.6.0",
+        "zod": "^4.1.12"
+    }
 }

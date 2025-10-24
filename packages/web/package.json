@@ -8,11 +8,19 @@
         "preview": "bun x astro preview"
     },
     "dependencies": {
-        "utils": "workspace:*",
+        "bot": "workspace:*",
+        "database": "workspace:*",
+        "types": "workspace:*",
         "@astrojs/node": "^9.5.0",
+        "@astrojs/react": "^4.4.0",
         "@iconify-json/fa6-brands": "^1.2.6",
         "@iconify-json/fa6-solid": "^1.2.4",
+        "@types/react": "^19.2.2",
+        "@types/react-dom": "^19.2.2",
         "astro": "^5.15.1",
-        "astro-icon": "^1.1.5"
+        "astro-icon": "^1.1.5",
+        "react": "^19.2.0",
+        "react-dom": "^19.2.0",
+        "utils": "workspace:*"
     }
 }

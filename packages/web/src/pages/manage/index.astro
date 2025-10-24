@@ -1,0 +1,9 @@
+---
+import LoggedIn from "#/layouts/LoggedIn.astro";
+import { Page } from "./_index";
+---
+
+<LoggedIn layout width={1200}>
+    <h1 id="header">manage your servers</h1>
+    <Page client:load />
+</LoggedIn>

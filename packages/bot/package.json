@@ -1,5 +1,6 @@
 {
     "name": "bot",
+    "module": "index.ts",
     "dependencies": {
         "database": "workspace:*",
         "queues": "workspace:*",

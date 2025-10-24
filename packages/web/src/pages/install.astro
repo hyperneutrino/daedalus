@@ -1,0 +1,52 @@
+---
+import Icon from "#/components/Icon.astro";
+import Layout from "#/layouts/Layout.astro";
+import { env } from "utils";
+
+const ID = env("DISCORD_CLIENT_ID");
+---
+
+<Layout>
+    <h1 id="header">install daedalus</h1>
+    <div class="flex col no-center">
+        <hr />
+        <h2>install to server: default</h2>
+        <p>
+            this has all of the permissions required for all modules. you will need to give daedalus overrides for private channels and move daedalus' role
+            above any roles you want it to manage
+        </p>
+        <a
+            href={`https://discord.com/oauth2/authorize?client_id=${ID}&permissions=533515988182&scope=applications.commands+bot`}
+            class="btn primary"
+            target="_blank"
+        >
+            install &mdash; default permissions <Icon name="chevron-right" />
+        </a>
+        <hr />
+        <h2>install to server: admin</h2>
+        <p>
+            <b>this is not recommended!</b> you generally should avoid giving bots admin for security, but if you want to try out daedalus in a testing server or
+            can't be bothered to learn permission setup, this is an option. remember to move daedalus' role above any roles you want it to manage, as admin does
+            not override the role hierarchy
+        </p>
+        <a href={`https://discord.com/oauth2/authorize?client_id=${ID}&permissions=8&scope=applications.commands+bot`} class="btn primary" target="_blank">
+            install &mdash; admin <Icon name="triangle-exclamation" /></a
+        >
+        <hr />
+        <h2>install to server: custom — <b>recommended</b></h2>
+        <p>
+            select the features you want to use and invite daedalus only with the necessary permissions. remember to move daedalus' role above any roles you
+            want it to manage and give it any necessary overrides in private channels
+        </p>
+        <p class="text-secondary">this feature is under construction</p>
+        <hr />
+        <h2>install to user</h2>
+        <p>
+            some utility commands can be used anywhere (even in servers without daedalus installed) if you install daedalus to your account, which does not give
+            it access to any data you do not explicitly give it
+        </p>
+        <a href={`https://discord.com/oauth2/authorize?client_id=${ID}&integration_type=1&scope=applications.commands`} class="btn primary" target="_blank">
+            install to user <Icon name="chevron-right" />
+        </a>
+    </div>
+</Layout>
