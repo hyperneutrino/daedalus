@@ -282,7 +282,7 @@ p {
     opacity: 60%;
 }
 
-.btn:not([disabled]:not(.static):active) {
+.btn:not([disabled]):not(.static):active {
     scale: 96%;
 }
 
